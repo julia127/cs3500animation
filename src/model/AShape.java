@@ -6,6 +6,7 @@ import java.awt.*;
  * Represents a shape
  */
 public class AShape implements IShape {
+  // Ashape, command, coordinate, icommand, ishape, rect, simpleanimation,tests
 
   protected String shapeName;
   protected ShapeType shapeType; // this should be an enum
@@ -44,8 +45,8 @@ public class AShape implements IShape {
   }
 
   @Override
-  public String getShapeType() {
-    return this.shapeName;
+  public ShapeType getShapeType() {
+    return this.shapeType;
   }
 
   @Override
