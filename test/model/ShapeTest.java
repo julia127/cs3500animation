@@ -1,12 +1,66 @@
 package model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
+import org.junit.Test;
 
+/**
+ * Testing class for AShape, IShape, Circle, and Rect.
+ */
 public class ShapeTest {
-  IShape circ1 = new Circle("Circ1", new Coordinate(15, 10), Color.BLACK, 5, 5);
-  IShape rect1 = new Rect("Rect1", new Coordinate(30, 10), Color.RED, 10, 15);
+  IShape circ1 = new Circle("Circ1", Color.BLACK, new Coordinate(15, 10), 5, 5);
+  IShape rect1 = new Rect("Rect1", Color.RED, new Coordinate(30, 10), 10, 15);
+
+  @Test(expected = IllegalArgumentException.class)
+  public void invalidDimensions() {
+    IShape badDimension = new AShape("test", ShapeType.CIRCLE, Color.red,
+            new Coordinate(5,5), -2, -4);
+    IShape circ3 = new Circle("Circ3", Color.BLACK, new Coordinate(5,5), -2, 4);
+    IShape rect3 = new Rect("Rect3", Color.blue, new Coordinate(13, 13), 5, -7);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void invalidColor() {
+    IShape badColor = new AShape("test", ShapeType.CIRCLE, null, new Coordinate(5,5), -2, -4);
+    IShape circ2 = new Circle("Circ2", null, new Coordinate(15, 10), 4, 6);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void invalidCoordinate() {
+    IShape badDimension = new AShape("test", ShapeType.CIRCLE, Color.red, null, -2, -4);
+    IShape rect2 = new Rect("Rect2", Color.CYAN, null, 8, 12);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNullColor() {
+    circ1.changeColor(null);
+    rect1.changeColor(null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNullCoordinate() {
+    circ1.moveShape(null);
+    rect1.moveShape(null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNegativeHeight() {
+    circ1.setHeight(-10);
+    rect1.setHeight(-1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNegativeWidth() {
+    circ1.setWidth(-5);
+    rect1.setWidth(-1);
+  }
+
+  @Test
+  public void testGetName() {
+    assertEquals("Circ1", circ1.getName());
+    assertEquals("Rect1", rect1.getName());
+  }
 
   @org.junit.Test
   public void getColor() {

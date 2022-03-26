@@ -1,11 +1,18 @@
 package model;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Represents the interface for a Shape.
+ * Contains methods to get and change fields of a shape object.
  */
 public interface IShape {
+
+  /**
+   * Gets the shape's name.
+   * @return the name of the shape.
+   */
+  String getName();
 
   /**
    * Gets the color of this shape.
@@ -23,7 +30,7 @@ public interface IShape {
    * Gets the type of this shape.
    * @return the name of this Shaoe.
    */
-  String getShapeType();
+  ShapeType getShapeType();
 
   /**
    * Gets the width of this shape.

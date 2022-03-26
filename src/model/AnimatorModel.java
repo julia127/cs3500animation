@@ -1,58 +1,43 @@
 package model;
 
+import java.util.List;
 
-import java.awt.*;
+/**
+ * This is the interface of the animation model. It is parameterized over the
+ * shape type. It contains methods that modify the state of the animation model.
+ */
 
 public interface AnimatorModel<IShape> extends AnimatorModelState<IShape> {
 
-  /** Begin the animation at time 0.
+  /** sets an animation with a given list of shapes and commands.
    *
+   * @param shapes shapes that will appear in the animation.
+   * @param commands the motions that the shapes will do in the animation.
    */
-  void start(IListOfShapes<IShape> shapes);
+  void setShapesAndCommands(List<IShape> shapes, List<ICommand> commands);
 
-  // For a motion (transformation), there should be a starting value and an ending value.
-
-  // transformation methods
-  /** transformation method.
-   * Change the position of a shape in the animation.
+  /** Adds a shape to the model.
    *
-   * @param coord the new position of the shape.
+   * @param s shape to be added.
    */
-  void move(Coordinate coord);
+  void addShape(IShape s);
 
-  /** transformation method.
-   * Change the size of a shape in the animation.
+  /** Removes a shape to the model.
    *
-   * @param width the new width of the shape.
-   * @param height the new height of the shape.
+   * @param s shape to be removed.
    */
-  void changeSize(int width, int height);
+  void removeShape(IShape s);
 
-  /** transformation method.
-   * Change the color of a shape in the animation.
+  /** Adds a command to the model.
    *
-   * @param color the color the shape will be changed to.
+   * @param c command to be added.
    */
-  void changeColor(Color color);
+  void addCommand(ICommand c);
 
-  // add descriptions to these
-
-  void setBoard(int width, int height);
-
-  void addShape(IShape shape);
-
-  void removeShape(String shapeName);
-
-  String getState();
-
-  /** End the animation.
+  /** Removes a command to the model.
    *
+   * @param c command to be removed.
    */
-  void end();
-
-  /** Check if the game is over.
-   *
-   */
-  void isOver();
+  void removeCommand(ICommand c);
 
 }
