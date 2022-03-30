@@ -9,6 +9,18 @@ import java.util.List;
  */
 public interface AnimatorModelState<IShape> {
 
+  /** Gets the width of the animation screen.
+   *
+   * @return the width of the animation screen.
+   */
+  int getWidth();
+
+  /** Gets the height of the animation screen.
+   *
+   * @return the height of the animation screen.
+   */
+  int getHeight();
+
   /** Gets the shapes in the animation.
    *
    * @return the model's list of shapes.
@@ -33,7 +45,7 @@ public interface AnimatorModelState<IShape> {
    * @param t the tick where we will get the shapes at.
    * @return the current list of shapes.
    */
-  List<IShape> getShapesAtTick(int t);
+  List<IShape> getShapesAtTick(double t);
 
   /** Gets the number of commands in the animation.
    *
@@ -58,4 +70,10 @@ public interface AnimatorModelState<IShape> {
    * @return a description of the animation as a string.
    */
   String getStateOfShapes();
+
+  /**
+   * Gets the state of the model in a SVG readable format.
+   * @return a String for the SVG.
+   */
+  String getSVGState();
 }
